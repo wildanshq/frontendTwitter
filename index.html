@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <script src="js/main.js"></script>
+    <script>
+        // javascript
+        function klik(){
+            document.getElementById("btnTweet").style.display = "grid"
+            document.getElementById("inTweets").style.height = "80px"
+        }
+        function keluar(){
+            var isi = document.getElementById('inTweets').value;
+
+            if (isi.length == 0){
+                document.getElementById("btnTweet").style.display = "none"
+                document.getElementById("inTweets").style.height = "22px"
+            }
+        }
+        function goFollowers(){
+            token = localStorage.getItem('token')
+            document.location='followers.html?token='+token
+        }
+        function goFollowing(){
+            token = localStorage.getItem('token')
+            document.location='following.html?token='+token
+        }
+
+        
+    </script>
+</head>
+<body>
+    <div id="backTop"></div>
+    <header>
+        <nav class="menu-info">
+            <ul>
+                <li class="active"><a href="index.html"><i class="fas fa-home"></i> <span class="label-menu">Home</span></a></li>
+                <li><a href=""><i class="far fa-bell"></i> <span class="label-menu">Notifications</span></a></li>
+                <li><a href=""><i class="far fa-envelope"></i> <span class="label-menu">Messages</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="logo">
+            <a href=""><img src="logo.png"></a>
+        </div>
+
+        <div class="menu-prof">
+            <div></div>
+            <div></div>
+            <div>
+                <form>
+                    <input type="text" class="form-cari" id="cari" placeholder="Search Twitter" onkeyup="lihatSearch()" onfocus="openRecent()" autocomplete="off">
+                    <div id="box-recent-search">
+                        <p>Recent searches</p>
+                        <ul id="list-search">
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="menu-drop">
+                <a href="" onclick="event.preventDefault(); dropDown();" class="btn-dropdown foto-menu" id="menu-drops">
+                    <!-- <i class="far fa-user-circle fauser"></i> -->
+                    <div>
+                        <img src="image/aku.jpg" width="100%" id="img-menu">
+                    </div>
+                </a>
+                <div class="dropdown" id="dropdown">
+                    <a href="">
+                        <p>
+                        <strong id="menu-fullname">Wildan Saepul Hak</strong><br>
+                        <span id="menu-username">@Wilhaq</span>
+                        </p>
+                    </a>
+                    <a href=""><i class="fa fa-user"></i> Profile</a>
+                    <a href=""><i class="fas fa-list"></i> Lists</a>
+                    <a href=""><i class="fas fa-bolt"></i> Moments</a>
+                    <a href=""><i class="far fa-chart-bar"></i> Analytics</a>
+                    <a href="account.html"><i class="fas fa-cogs"></i> Setting and privacy</a>
+                    <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+            <div>
+                <button class="menu-tweet" onclick="openTweet();">Tweet</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="atas">
+        <div id="kiri">
+
+            <div id="profil">
+                <div class="pf1">
+                    <img src="image/jujutsu.jpg" width="100%" >
+                </div>
+                <div class="box-ganti-profil">
+                        <div id="idUser" style="display:none"></div>
+                        <div class="pf3" onclick="event.preventDefault(); gantiProfile();">
+                            <img src="img" width="100%" id="user-profile">
+                            <!-- <i class="fa fa-camera fa-2x facam"></i> -->
+                        </div>
+                        <div class="btn-ganti-foto" id="box-edit-profil">
+                            <li>
+                                <form id="formProfile" method="POST" enctype="multipart/form-data" action="http://localhost:4000/ubahProfile">
+                                    <input type="hidden" name="token" id="id-user-profile">
+                                    <label for="upload">
+                                        <span>Upload photo</span>
+                                        <input type="file" name="file" id="upload" onchange="loadImage(event);" style="display:none">
+                                    </label>
+                                </form>
+                            </li>
+                            <hr color="#eee" size="1">
+                            <li onclick="event.preventDefault(); gantiProfile();"><span>Cancel</span></li>
+                        </div>
+                    </div>
+                    <div class="pf2">
+                    <div>
+                        <a href="#" onclick="document.location='profile.html?token='+localStorage.getItem('token')" class="btn-profil">
+                            <h3 id="profil-fullname">Nama User</h3>
+                            <span id="profil-username">@user</span>
+                        </a>
+                    </div>
+    
+                    <ul class="user-data" style="margin-left:20px;margin-top:20px;">
+                        <li><a href="">
+                            Tweets
+                            <h3 id="jml-tweet">0</h3>
+                        </a>
+                        </li>
+                        <li><a href="#" onclick="goFollowing()">
+                            Following
+                            <h3 id="jml-follows">0</h3>
+                        </a>
+                        </li>
+                        <li><a href="#" onclick="goFollowers()">
+                            Followers
+                            <h3 id="jml-followed">0</h3>
+                        </a>
+                        </li>
+                    </ul>
+                    <br>
+
+                </div>
+            </div>
+    
+            <div id="trends">
+                <div id="head-follow">
+                    <h3>Trends for you</h3>
+                    <a href="">Change</a>
+                    <div class="clear"></div>
+                </div>
+
+                <ul>
+                    <li>
+                        <a href="">#Pembubaran KPI</a>
+                        <div>318K Tweets</div>
+                    </li>
+                    <li>
+                        <a href="">#LampardOUT</a>
+                        <div>129K Tweets</div>
+                    </li>
+                    <li>
+                        <a href="">#FPI</a>
+                        <div>222K Tweets</div>
+                    </li>
+                    <li>
+                        <a href="">#VaksinCOVID</a>
+                        <div>452K Tweets</div>
+                    </li>
+                    <li>
+                        <a href="">#SavePalestine</a>
+                        <div>62.2K Tweets</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="ngetweet">
+            <div id="wrapp-tweet">
+                <div id="box-modal-tweet">
+                    <div class="head-tweet hidden-box" id="box-modal-head">
+                        <h3>Compose new Tweet</h3>
+                        <a onclick="closeBoxTweet();" class="btn-close-head"><i class="fas fa-times"></i></a>
+                    </div>
+                    <div id="inTweet">
+                        <img src='image/akun.png' class='user-icon-input' id="img-tweet">
+                        <div>
+        
+                        <form method="POST" action="http://localhost:4000/addtweet" enctype="multipart/form-data">
+                            <input type="hidden" name="token" id="userId">
+                            <input type="hidden" name="tgl" id="usertgl">
+                            <div id="box-intweet">
+                                <textarea class="inTweet" name="tweet" id="inTweets" placeholder="What's happening?" onfocus="klik()"></textarea>
+                                <div class="media" id="media">
+                                    <div class="media-foto">
+                                        <img src="" id="insert-foto-tweet" onclick="showModal(event);">
+                                        <video src="" id="insert-video-tweet" onclick="showModal(event);"></video>
+                                        <a id="close-media" onclick="closeMedia();">x</a>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="btn-btn-tweet" id="btnTweet">
+                                <p class="p-first">
+                                    <label for="tweetImg">
+                                        <span><i class="far fa-file-image"></i></span>
+                                        <input type="file" name="file" id="tweetImg" style="display:none" onchange="loadMediaFoto(event);" accept="image/*">
+                                    </label>
+                                    <label for="tweetVideo">
+                                        <span><i class="far fa-file-video"></i></span>
+                                        <input type="file" name="file" id="tweetVideo" style="display:none" onchange="loadMediaVideo(event);" accept="video/*">
+                                    </label>
+                                    <span><i class="fas fa-poll-h"></i></span>
+                                    <span><i class="fas fa-map-marker-alt"></i></span>
+                                </p>
+            
+                                <p class="p-last">
+                                    <a href="" title="Add Another tweet"><i class="fa fa-plus-circle"></i></a>
+                                    <input type="submit" class="kirimTweet" value="Tweet">
+                                </p>
+                            </div>
+                        </form>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+
+            <div id="box-tweet">
+            </div>
+
+            <div class="back-top">
+                <i class="fab fa-twitter"></i>
+                <p><a href="#backTop">Back to top <i class="fas fa-long-arrow-alt-up"></i></a></p>
+            </div>            
+
+            <div></div>
+
+        </div>
+
+        <div id="kanan">
+            <div id="follow">
+                <div id="head-follow">
+                    <h3>Who to follow</h3>
+                    <a href="">Refresh</a>
+                    <a href="">View all</a>
+                    <div class="clear"></div>
+                </div>
+
+                <div id="body-follow">
+                </div>
+    
+                <div class="connect">
+                    <a href="">Connect to other address books</a>
+                </div>
+                
+            </div>
+
+            <div id="footer">
+                <p>
+                ©Twitter
+                <a href="">About</a>
+                <a href="">Help Center</a>
+                <a href="">Terms</a>
+                <a href="">Privacy policy</a>
+                <a href="">Cookies</a>
+                <a href="">Ads info</a>
+                <a href="">Brand</a>
+                <a href="">Blog</a>
+                <a href="">Status</a>
+                <a href="">Apps</a>
+                <a href="">Jobs</a>
+                <a href="">Marketing</a>
+                <a href="">Businesses</a>
+                <a href="">Developers</a>
+                </p>
+                
+                <div>
+                    <a href=""><i class="fa fa-link"></i> Advertise with Twitter</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="both"></div>
+
+    </section>
+
+<div id="loading">
+    <img src="image/loading.gif">
+</div>
+
+<div class="modal" id="modal-profile">
+    <div class="wrapper-modal">
+        <div class="head-modal">
+            <h3>Change your photoprofile</h3>
+            <a onclick="closeModal('modal-profile');" class="btn-close-head"><i class="fas fa-times"></i></a>
+        </div>
+        <div class="body-modal">
+            <img src="image/akun.jpg" id="show-img-profile">
+
+        </div>
+        <div class="foot-modal">
+            <button onclick="closeModal('modal-profile');" class="btn-follow">Close</button>
+            <button onclick="kirimFoto();" class="menu-tweet">Apply</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-tweet">
+    <div class="wrapper-modal" style="width: 700px !important; padding: 10px; margin-top: 1%; max-height: 600px; overflow: hidden;">
+        <div class="head-modal">
+            <h3 id="media-title">Image</h3>
+            <a onclick="closeModal('modal-tweet');" class="btn-close-head"><i class="fas fa-times"></i></a>
+        </div>
+        <img src="image/akun.jpg" width="100%" id="show-tweet-img-big">
+        <video src="" controls width="100%" id="show-tweet-vid-big"></video>
+    </div>
+</div>
+
+<div id="modal-img" class="modal-img">
+    <span class="close" onclick="closeModalImg()">&times;</span>
+    <div class="body-modal-image">
+        <img class="modal-content" id="imgModals" src="image/img-profile.jpg">
+        <video class="modal-content" id="vidModals" controls></video>
+        <div id="text" class="text-modal">Sam Sesterdamp</div>
+    </div>
+</div>
+    
+<script>
+    getUser();
+    lihatUser();
+    lihatTweet();
+    getCountFollow();
+</script>
+
+</body>
+</html>

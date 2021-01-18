@@ -1,0 +1,96 @@
+@media screen and (max-width: 1200px){
+    header{
+        grid-template-columns: 5fr 3fr 4fr;
+        /* background-color: red; */
+    }
+    section{
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 530px auto auto;
+        grid-template-areas: 
+        'a b'
+        'c b'
+        '. b';
+    }
+
+}
+
+@media screen and (max-width: 1040px){
+    header{
+        grid-template-columns: 7fr 1fr 5fr;
+    }
+}
+
+@media screen and (max-width: 920px){
+    section{
+        max-width: 100%;
+    }
+    #kiri{
+        margin-left:10px;
+    }
+    #kanan{
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 850px){
+    header{
+        grid-template-columns: 3fr 1fr 5fr;
+    }
+    .label-menu{
+        display: none;
+    }
+    #kanan{
+        /* margin-top: 10px;
+        grid-gap:10px; */
+    }
+}
+
+@media screen and (max-width: 700px){
+    header{
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        'b'
+        'a'
+        'c';
+    }
+    .label-menu{
+        display: inherit;
+    }
+    .menu-info{
+        margin-left: 0;
+        width: auto;
+        margin:1% auto;
+    }
+    .menu-prof{
+        /* grid-template-columns:3fr; */
+    }
+    .pf1{
+        height: 250px;
+    }
+    .pf3{
+        top:58%;
+    }
+    section{
+        grid-template-areas: 
+        'a'
+        'b'
+        'c';
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+    #kiri{
+        margin-top: 22%;
+    }
+    #kiri{
+        margin-right: 10px;
+    }
+    #kanan{
+        margin-top: 0%;
+        margin-right: 10px;
+    }
+    #ngetweet{
+        margin-top: 0%;
+        margin-left:10px;
+        margin-right: 10px;
+    }
+}

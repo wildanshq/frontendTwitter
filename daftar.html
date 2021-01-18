@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SignUp on Twitter</title>
+	<link rel="icon" type="image/x-icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="css/style-login.css">
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+	<header>
+		<ul>
+			<li><a href=""><img src="logo.png" width="25px" height="25px"> Home</a></li>
+			<li><a href="">About</a></li>
+		</ul>
+	</header>
+
+	<div id="box-login">
+		
+		<div id="box-form">
+
+            <h2>Sign Up to Twitter</h2>
+
+            <div id="info"><strong>Info :</strong></div>
+
+            <form onsubmit="event.preventDefault(); signUp()" method="POST">
+
+                <p><input type="text" class="inputan" id="fullname" placeholder="Fullname"></p>
+                <p><input type="text" class="inputan" id="username" placeholder="Username"></p>
+                <p><input type="text" class="inputan" id="email" placeholder="Email"></p>
+                <p><input type="password" class="inputan" id="password" placeholder="Password"></p>
+
+			<input type="submit" value="Sign Up" class="button">
+            <input type="checkbox"> i Aggree . <a href="">Terms and Condition</a>
+            
+            </form>
+            
+            <div style="margin:20px 0px;padding:20px 0px;border-top: 1px solid #ddd;">
+                Sudah punya akun? 
+                <a href="login.html">Sign In</a>
+            </div>
+		</div>
+
+		<div id="box-footer">
+			<p>&copy;Copyright Twitter</p>
+		</div>
+
+	</div>
+
+</body>
+</html>

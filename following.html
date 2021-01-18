@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title id="title-profile">Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <script src="js/main.js"></script>
+    <script>
+        function goProfile(){
+            token = document.location.href.split("=")[1];
+            document.location='profile.html?token='+token
+        }
+        function goFollowers(){
+            token = document.location.href.split("=")[1];
+            document.location='followers.html?token='+token
+        }
+    </script>
+</head>
+<body>
+    <div id="atas"></div>
+    <header>
+        <nav class="menu-info">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span class="label-menu">Home</span></a></li>
+                <li><a href=""><i class="far fa-bell"></i> <span class="label-menu">Notifications</span></a></li>
+                <li><a href=""><i class="far fa-envelope"></i> <span class="label-menu">Messages</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="logo">
+            <a href=""><img src="logo.png"></a>
+        </div>
+
+        <div class="menu-prof">
+            <div></div>
+            <div></div>
+            <div>
+                <form>
+                    <input type="text" class="form-cari" id="cari" placeholder="Search Twitter" onkeyup="lihatSearch()" onfocus="openRecent()" autocomplete="off">
+                    <div id="box-recent-search">
+                        <p>Recent searches</p>
+                        <ul id="list-search">
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="menu-drop">
+                <a href="" onclick="event.preventDefault(); dropDown();" class="btn-dropdown foto-menu" id="menu-drops">
+                    <!-- <i class="far fa-user-circle fauser"></i> -->
+                    <div>
+                        <img src="image/akun.jpg" width="100%" id="img-menu">
+                    </div>
+                </a>
+                <div class="dropdown" id="dropdown">
+                    <a href="">
+                        <p>
+                        <strong id="menu-fullname">Samsam Muhammad Nursamsi</strong><br>
+                        <span id="menu-username">@NursamsiSamsam</span>
+                        </p>
+                    </a>
+                    <a href=""><i class="fa fa-user"></i> Profile</a>
+                    <a href=""><i class="fas fa-list"></i> Lists</a>
+                    <a href=""><i class="fas fa-bolt"></i> Moments</a>
+                    <a href=""><i class="far fa-chart-bar"></i> Analytics</a>
+                    <a href="account.html"><i class="fas fa-cogs"></i> Setting and privacy</a>
+                    <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+            <div>
+                <button class="menu-tweet">Tweet</button>
+            </div>
+        </div>
+    </header>
+    <div id="sampul-profile">
+        <div id="nav-sampul">
+            <img src="image/img-profile.jpg">
+        </div>
+
+        <div id="nav-header">
+            <grid-left>
+                <div>
+                    <img src="image/akun.jpg" id="user-profile">
+                </div>
+            </grid-left>
+    
+            <grid-center>
+                <ul>
+                    <li><a onclick="goProfile()">
+                        Tweets
+                        <h3 id="jml-tweet">0</h3>
+                    </a>
+                    </li>
+                    <li><a>
+                        Following
+                        <h3 id="jml-follows">0</h3>
+                    </a>
+                    </li>
+                    <li><a onclick="goFollowers()">
+                        Followers
+                        <h3 id="jml-followed">0</h3>
+                    </a>
+                    </li>
+                    <li><a href="">
+                        List
+                        <h3>0</h3>
+                    </a>
+                    </li>
+                    <li><a href="">
+                        Moments
+                        <h3>0</h3>
+                    </a>
+                    </li>
+                </ul>
+            </grid-center>
+    
+            <grid-right>
+                <button class="b-edit" id="b-edit">Edit profile</button>
+                <button class="b-following" id="b-following" onclick='addFollow(this)' onmouseover='checkFollow(this)' onmouseout='checkFollowOut(this)'>Following</button>
+                <button class="b-follow" id="b-follow" onclick='addFollow(this)' onmouseover='checkFollow(this)' onmouseout='checkFollowOut(this)'>Follow</button>
+            </grid-right>
+        </div>
+    </div>
+    <div id="wrapp-profile" style="grid-template-columns: 2fr 5fr !important">
+        <content-left>
+            <data-profile>
+                <h2 id="profile-fullname">Samsam Muhammad Nursamsi</h2>
+                <span id="profile-username">@NursamsiSamsam</span>
+
+                <p><i class="far fa-calendar-alt"></i> Joined October 2018</p>
+                <p><i class="far fa-file-image"></i> Photos and videos</p>
+
+                <ul id="box-media-user">
+                </ul>
+
+            </data-profile>
+        </content-left>
+
+        <content-full id="box-list-following">
+        </content-full>
+
+    </div>
+
+<div id="loading">
+    <img src="image/loading.gif">
+</div>
+
+<div id="modal-img" class="modal-img">
+    <span class="close" onclick="closeModalImg()">&times;</span>
+    <div class="body-modal-image">
+        <img class="modal-content" id="imgModals" src="image/img-profile.jpg">
+        <video class="modal-content" id="vidModals" controls></video>
+        <div id="text" class="text-modal">Sam Sesterdamp</div>
+    </div>
+</div>
+
+<script>
+    cekBtnUser();
+    lihatMediaUser();
+    getUserProfile();
+    getMenuUserProfile();
+    getListFollowing();
+    getCountFollow();
+</script>
+</body>
+</html>

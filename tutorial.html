@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script>
+    function allData(){
+        var nama = ['Samsam','Fahmi','Dira','Cecep']
+
+        nama.forEach(function(val,index){
+            document.getElementById("data").innerHTML +=
+            `<li>
+                <button onclick='addFollow("${index}")'>Follow</button> 
+                <b>${val}</b> 
+            </li>`;
+        });
+    }
+
+    function addFollow(idfollowing){
+        alert(idfollowing)
+    }
+    </script>
+</head>
+<body>
+
+    <div id="iduser" style="display:none;">1</div>
+    <h2>My Name : Samsam</h2>
+
+    <ol id="data"></ol>
+
+<script>
+    allData();
+</script>
+</body>
+</html>

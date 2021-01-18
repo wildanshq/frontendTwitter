@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign In on Twitter</title>
+	<link rel="icon" type="image/x-icon" href="logo.png">
+	<link rel="stylesheet" type="text/css" href="css/style-login.css">
+	<script src="js/main.js"></script>
+	<script>
+        if (localStorage.getItem('token') != null){
+            document.location='index.html'
+        }
+	</script>
+</head>
+<body>
+
+	<header>
+		<ul>
+			<li><a href=""><img src="logo.png" width="25px" height="25px"> Home</a></li>
+			<li><a href="">About</a></li>
+		</ul>
+	</header>
+
+	<div id="box-login">
+		
+		<div id="box-form">
+
+			<h2>Sign In to Twitter</h2>
+			
+            <div id="info"><strong>Info :</strong></div>
+
+			<form onsubmit="event.preventDefault(); signIn()" method="POST">
+
+				<p><input type="text" class="inputan" id="email" placeholder="Phone, email or username"></p>
+				<p><input type="password" class="inputan" id="pass" placeholder="Password"></p>
+
+				<input type="submit" class="button" value="Log in">
+				<input type="checkbox"> Remember me . <a href="">Forgot password?</a>
+
+			</form>
+
+            <div style="margin:20px 0px;padding:20px 0px;border-top: 1px solid #ddd;">
+                Belum punya akun? 
+                <a href="daftar.html">Sign Up</a>
+            </div>
+			
+		</div>
+
+		<div id="box-footer">
+			<p>&copy;</p>
+		</div>
+
+	</div>
+
+</body>
+</html>

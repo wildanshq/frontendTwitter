@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Twitter / Settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <script src="js/main.js"></script>
+    <script>
+        function lihatAkun(page){
+            if (page == 'profile'){
+                document.getElementById("title-page").innerText = "Account"
+                document.getElementById("akunProfile").style.display = "block"
+                document.getElementById("akunPassword").style.display = "none"
+            } else if (page == 'password'){
+                document.getElementById("title-page").innerText = "Password"
+                document.getElementById("akunPassword").style.display = "block"
+                document.getElementById("akunProfile").style.display = "none"
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="menu-info">
+            <ul>
+                <li class="active"><a href="index.html"><i class="fas fa-home"></i> <span class="label-menu">Home</span></a></li>
+                <li><a href=""><i class="far fa-bell"></i> <span class="label-menu">Notifications</span></a></li>
+                <li><a href=""><i class="far fa-envelope"></i> <span class="label-menu">Messages</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="logo">
+            <a href=""><img src="logo.png"></a>
+        </div>
+
+        <div class="menu-prof">
+            <div></div>
+            <div></div>
+            <div>
+                <form>
+                    <input type="text" class="form-cari" placeholder="Search Twitter">
+                </form>
+            </div>
+            <div class="menu-drop">
+                <a href="" onclick="event.preventDefault(); dropDown();" class="btn-dropdown foto-menu" id="menu-drops">
+                    <!-- <i class="far fa-user-circle fauser"></i> -->
+                    <div>
+                        <img src="image/jujutsu.jpg" width="100%" id="img-menu">
+                    </div>
+                </a>
+                <div class="dropdown" id="dropdown">
+                    <a href="">
+                        <p>
+                        <strong id="menu-fullname">Wildan</strong><br>
+                        <span id="menu-username">@wildan</span>
+                        </p>
+                    </a>
+                    <a href=""><i class="fa fa-user"></i> Profile</a>
+                    <a href=""><i class="fas fa-list"></i> Lists</a>
+                    <a href=""><i class="fas fa-bolt"></i> Moments</a>
+                    <a href=""><i class="far fa-chart-bar"></i> Analytics</a>
+                    <a href="account.html"><i class="fas fa-cogs"></i> Setting and privacy</a>
+                    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+            <div>
+                <button class="menu-tweet">Tweet</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="atas">
+        <div id="kiri">
+
+            <div id="profil">
+                <div class="pf1">
+                    <img src="image/jujutsu.jpg" width="100%" >
+                </div>
+                <div class="box-ganti-profil">
+                        <div id="idUser" style="display:none"></div>
+                        <div class="pf3" onclick="event.preventDefault(); gantiProfile();">
+                            <img src="img" width="100%" id="user-profile">
+                            <!-- <i class="fa fa-camera fa-2x facam"></i> -->
+                        </div>
+                        <div class="btn-ganti-foto" id="box-edit-profil">
+                            <li>
+                                <form id="formProfile" method="POST" enctype="multipart/form-data" action="http://localhost:4000/ubahProfile">
+                                    <input type="hidden" name="id" id="id-user-profile">
+                                    <label for="upload">
+                                        <span>Upload photo</span>
+                                        <input type="file" name="file" id="upload" onchange="loadImage(event);" style="display:none">
+                                    </label>
+                                </form>
+                            </li>
+                            <hr color="#eee" size="1">
+                            <li onclick="event.preventDefault(); gantiProfile();"><span>Cancel</span></li>
+                        </div>
+                    </div>
+                    <div class="pf2">
+                    <div>
+                        <a href="https://twitter.com/NursamsiSamsam" class="btn-profil">
+                            <h3 id="profil-fullname">Wildan Saepul Hak</h3>
+                            <span id="profil-username">@wildan</span>
+                        </a>
+                    </div>
+                    <br>
+
+                </div>
+            </div>
+    
+            <div id="nav-account">
+                <ul>
+                    <li onclick="lihatAkun('profile')">
+                        <a href="#">Account</a>
+                        <div style="float:right"><i class="fas fa-chevron-right"></i></div>
+                        <div style="clear:both;"></div>
+                    </li>
+                    <li>
+                        <a href="#">Privacy and safety</a>
+                        <div style="float:right"><i class="fas fa-chevron-right"></i></div>
+                        <div style="clear:both;"></div>
+                    </li>
+                    <li onclick="lihatAkun('password')">
+                        <a href="#">Password</a>
+                        <div style="float:right"><i class="fas fa-chevron-right"></i></div>
+                        <div style="clear:both;"></div>
+                    </li>
+                    <li>
+                        <a href="#">Notification</a>
+                        <div style="float:right"><i class="fas fa-chevron-right"></i></div>
+                        <div style="clear:both;"></div>
+                    </li>
+                    <li>
+                        <a href="#">Widgets</a>
+                        <div style="float:right"><i class="fas fa-chevron-right"></i></div>
+                        <div style="clear:both;"></div>
+                    </li>
+                </ul>
+            </div>
+            <div id="footer">
+                    <p>
+                    ©Twitter
+                    <a href="">About</a>
+                    <a href="">Help Center</a>
+                    <a href="">Terms</a>
+                    <a href="">Privacy policy</a>
+                    <a href="">Cookies</a>
+                    <a href="">Ads info</a>
+                    <a href="">Brand</a>
+                    <a href="">Blog</a>
+                    <a href="">Status</a>
+                    <a href="">Apps</a>
+                    <a href="">Jobs</a>
+                    <a href="">Marketing</a>
+                    <a href="">Businesses</a>
+                    <a href="">Developers</a>
+                    </p>
+                </div>
+        </div>
+        
+        <div id="account-page">
+            <h2 id="title-page">Account</h2>
+            <div id="box-content">
+
+                <div id="akunProfile">
+                    <div class="form-box">
+                        <div>Username</div>
+                        <input type="text" class="form-input" id="acc-username">
+                    </div>
+                    <div class="form-box">
+                        <div>Email</div>
+                        <input type="text" class="form-input" id="acc-email">
+                    </div>
+                    <div class="form-box">
+                        <div>Fullname</div>
+                        <input type="text" class="form-input" id="acc-fullname">
+                    </div>
+                    <div class="form-box">
+                        <div>Bio</div>
+                        <textarea class="form-input" id="acc-bio"></textarea>
+                    </div>
+                    <div class="form-box" align="right">
+                        <input type="button" class="menu-tweet" value="Simpan" onclick="ubahAkun()">
+                    </div>
+                </div>
+
+                <div id="akunPassword" style="display:none">
+                    <div class="form-box">
+                        <div>Current Password</div>
+                        <input type="text" class="form-input" id="pass-current">
+                        <p align="center" style="padding-left:15px;"><a href="">Forgot your password?</a></p>
+                    </div>
+                    <div class="form-box">
+                        <div>New Password</div>
+                        <input type="text" class="form-input" id="pass-new">
+                    </div>
+                    <div class="form-box">
+                        <div>Verify Password</div>
+                        <input type="text" class="form-input" id="pass-ver">
+                    </div>
+                    <div class="form-box" align="right">
+                        <input type="button" class="menu-tweet" value="Simpan" onclick="ubahPassword()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="both"></div>
+
+    </section>
+
+<script>
+    getMenuUserProfile()
+    getAccount();
+</script>
+
+</body>
+</html>
